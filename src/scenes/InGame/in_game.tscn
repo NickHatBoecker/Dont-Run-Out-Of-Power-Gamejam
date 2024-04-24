@@ -1,0 +1,141 @@
+[gd_scene load_steps=14 format=3 uid="uid://ecpx6gct0iwm"]
+
+[ext_resource type="Script" path="res://src/scenes/InGame/in_game.gd" id="1_3vdxa"]
+[ext_resource type="PackedScene" uid="uid://dybu7d61hjkm1" path="res://src/scenes/InGame/Levels/TestLevel/TestLevel.tscn" id="2_cdt4n"]
+[ext_resource type="Material" uid="uid://csiumhlhndi8h" path="res://src/shaders/greenscaleShaderMaterialObject.tres" id="3_s0hb3"]
+[ext_resource type="Texture2D" uid="uid://dc8avfbaw232h" path="res://src/assets/images/battery.png" id="3_xjvw3"]
+[ext_resource type="Script" path="res://src/scenes/InGame/NightVisionPower.gd" id="4_ada37"]
+[ext_resource type="PackedScene" uid="uid://cocj6e0bva14c" path="res://src/scenes/InGame/PauseMenu/pause_menu.tscn" id="4_prq8h"]
+[ext_resource type="Texture2D" uid="uid://cqcxbeexm5sr5" path="res://src/assets/images/kenney/grey_button02.png" id="5_74lbk"]
+[ext_resource type="Texture2D" uid="uid://bp8v2kwtuqajh" path="res://src/assets/images/kenney/green_button02.png" id="5_mp45e"]
+[ext_resource type="FontFile" uid="uid://bbarq1kl5hjt8" path="res://src/assets/fonts/PressStart2P.ttf" id="6_4sbx8"]
+[ext_resource type="PackedScene" uid="uid://ssooyvxi3hig" path="res://src/objects/InputIcon/InputButton.tscn" id="7_klj52"]
+[ext_resource type="PackedScene" uid="uid://x6j0q30am5gu" path="res://src/scenes/InGame/YouDidItScreen.tscn" id="10_fm6js"]
+[ext_resource type="PackedScene" uid="uid://dvvg4mpkynrt6" path="res://src/scenes/instructions/instructions.tscn" id="11_xc5ih"]
+[ext_resource type="Script" path="res://src/objects/TrackTime.gd" id="13_dq4tc"]
+
+[node name="InGame" type="Node2D"]
+script = ExtResource("1_3vdxa")
+
+[node name="CurrentScene" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1930.0
+offset_bottom = 1082.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CurrentScene"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="CurrentScene/SubViewportContainer"]
+disable_3d = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(1920, 1080)
+size_2d_override = Vector2i(274, 154)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="TestLevel" parent="CurrentScene/SubViewportContainer/SubViewport" instance=ExtResource("2_cdt4n")]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -513.0
+offset_top = 26.0
+offset_right = -34.0
+offset_bottom = 71.0
+grow_horizontal = 0
+alignment = 1
+
+[node name="Sprite2D" type="TextureRect" parent="UI/HBoxContainer"]
+custom_minimum_size = Vector2(78, 45)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("3_xjvw3")
+
+[node name="NightVisionPower" type="Control" parent="UI/HBoxContainer"]
+custom_minimum_size = Vector2(381, 40)
+layout_mode = 2
+script = ExtResource("4_ada37")
+
+[node name="Empty" type="TextureRect" parent="UI/HBoxContainer/NightVisionPower"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_74lbk")
+
+[node name="Full" type="TextureRect" parent="UI/HBoxContainer/NightVisionPower"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_mp45e")
+expand_mode = 1
+
+[node name="InputButtonForNightVision" parent="UI" instance=ExtResource("7_klj52")]
+offset_left = 1293.0
+offset_top = 23.0
+offset_right = 1543.0
+offset_bottom = 123.0
+buttonText = ""
+action = "ui_nightvision"
+
+[node name="YouDidIt" parent="UI" instance=ExtResource("10_fm6js")]
+visible = false
+
+[node name="LevelName" type="Label" parent="UI"]
+offset_left = 21.0
+offset_top = 23.0
+offset_right = 165.0
+offset_bottom = 47.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_outline_size = 9
+theme_override_fonts/font = ExtResource("6_4sbx8")
+theme_override_font_sizes/font_size = 24
+text = "Level1"
+
+[node name="Instructions" parent="UI" instance=ExtResource("11_xc5ih")]
+visible = false
+
+[node name="NightVision" type="ColorRect" parent="."]
+visible = false
+material = ExtResource("3_s0hb3")
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="PauseMenu" parent="." instance=ExtResource("4_prq8h")]
+visible = false
+
+[node name="NightVisionTimer" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="FoundExitTimer" type="Timer" parent="."]
+script = ExtResource("13_dq4tc")
+storeVariableName = "timeToFindExit"
+
+[node name="TimeUsedFlashlightTimer" type="Timer" parent="."]
+script = ExtResource("13_dq4tc")
+storeVariableName = "timeUsedFlashlight"
+
+[connection signal="continueToNextLevel" from="UI/YouDidIt" to="." method="_on_continue_to_next_level"]
+[connection signal="hidden" from="UI/Instructions" to="." method="_on_instructions_hidden"]
+[connection signal="hidden" from="PauseMenu" to="." method="_on_pause_menu_hidden"]
+[connection signal="restart_level" from="PauseMenu" to="." method="_on_pause_menu_restart_level"]
+[connection signal="timeout" from="NightVisionTimer" to="." method="_on_night_vision_timer_timeout"]

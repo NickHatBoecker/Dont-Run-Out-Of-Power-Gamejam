@@ -1,0 +1,138 @@
+[gd_scene load_steps=7 format=3 uid="uid://7arusq1aympr"]
+
+[ext_resource type="Script" path="res://src/scenes/menus/Settings/Settings.gd" id="1_4xm10"]
+[ext_resource type="Theme" uid="uid://c2ghuirgamdal" path="res://src/scenes/menus/Settings/Settings.tres" id="2_4htgr"]
+[ext_resource type="Script" path="res://src/scenes/menus/Settings/VolumeSlider.gd" id="2_7h2na"]
+[ext_resource type="PackedScene" uid="uid://d2u26almqf5vo" path="res://src/objects/AnimatedBackground/AnimatedMenuBackground.tscn" id="2_yera1"]
+[ext_resource type="Texture2D" uid="uid://c8nmvhvo7x0me" path="res://src/assets/images/battery-animated-background.png" id="3_xw2ds"]
+[ext_resource type="PackedScene" uid="uid://ssooyvxi3hig" path="res://src/objects/InputIcon/InputButton.tscn" id="5_ofkqn"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_4xm10")
+
+[node name="AnimatedMenuBackground" parent="." instance=ExtResource("2_yera1")]
+texture = ExtResource("3_xw2ds")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 388.0
+offset_top = 202.0
+offset_right = -377.0
+offset_bottom = -436.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.211765, 0.211765, 0.211765, 1)
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -508.5
+offset_top = -262.0
+offset_right = 508.5
+offset_bottom = 262.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+
+[node name="SfxVolume" type="HBoxContainer" parent="Content"]
+layout_mode = 2
+theme_override_constants/separation = 48
+
+[node name="Label" type="Label" parent="Content/SfxVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_4htgr")
+theme_override_font_sizes/font_size = 24
+text = "SFX Volume"
+
+[node name="Slider" type="HSlider" parent="Content/SfxVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../../WindowControl/Window")
+focus_neighbor_bottom = NodePath("../../MusicVolume/Slider")
+theme = ExtResource("2_4htgr")
+max_value = 4.0
+value = 4.0
+tick_count = 4
+ticks_on_borders = true
+script = ExtResource("2_7h2na")
+playerId = "sfx"
+testSound = "monster"
+
+[node name="MusicVolume" type="HBoxContainer" parent="Content"]
+layout_mode = 2
+theme_override_constants/separation = 48
+
+[node name="Label" type="Label" parent="Content/MusicVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_4htgr")
+theme_override_font_sizes/font_size = 24
+text = "Music Volume"
+
+[node name="Slider" type="HSlider" parent="Content/MusicVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../../SfxVolume/Slider")
+focus_neighbor_bottom = NodePath("../../WindowControl/Window")
+theme = ExtResource("2_4htgr")
+max_value = 4.0
+value = 2.0
+tick_count = 4
+ticks_on_borders = true
+script = ExtResource("2_7h2na")
+playerId = "music"
+testSound = "select"
+
+[node name="WindowControl" type="HBoxContainer" parent="Content"]
+layout_mode = 2
+theme_override_constants/separation = 48
+
+[node name="Label" type="Label" parent="Content/WindowControl"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_4htgr")
+theme_override_font_sizes/font_size = 24
+text = "Window"
+
+[node name="Window" type="OptionButton" parent="Content/WindowControl"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../../MusicVolume/Slider")
+focus_neighbor_bottom = NodePath("../../SfxVolume/Slider")
+theme = ExtResource("2_4htgr")
+alignment = 1
+item_count = 2
+selected = 0
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -148.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="InputButton" parent="MarginContainer" instance=ExtResource("5_ofkqn")]
+layout_mode = 2
+
+[connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="item_selected" from="Content/WindowControl/Window" to="." method="_on_window_changed"]
+[connection signal="pressed" from="MarginContainer/InputButton" to="." method="_on_back_pressed"]

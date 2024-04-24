@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=3 uid="uid://cocj6e0qs837c"]
+
+[ext_resource type="Script" path="res://src/scenes/menus/StartMenu/start_menu.gd" id="1_8r2ve"]
+[ext_resource type="Script" path="res://src/objects/FadeInGameStart.gd" id="2_0xoop"]
+[ext_resource type="Theme" uid="uid://bfxi6ddh87l1r" path="res://src/scenes/menus/SaveMenu/SaveMenuButton.tres" id="2_ig451"]
+[ext_resource type="PackedScene" uid="uid://d2u26almqf5vo" path="res://src/objects/AnimatedBackground/AnimatedMenuBackground.tscn" id="2_ypbsj"]
+[ext_resource type="Texture2D" uid="uid://c8nmvhvo7x0me" path="res://src/assets/images/battery-animated-background.png" id="4_mstkt"]
+[ext_resource type="FontFile" uid="uid://bbarq1kl5hjt8" path="res://src/assets/fonts/PressStart2P.ttf" id="5_ubp6b"]
+[ext_resource type="Texture2D" uid="uid://15gfyylux1lb" path="res://src/assets/images/poweroff.png" id="6_y4n8j"]
+[ext_resource type="Script" path="res://src/models/SoundButton.gd" id="8_sy0ir"]
+
+[node name="StartMenu" type="PanelContainer"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_8r2ve")
+
+[node name="FadeInGameStart" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("2_0xoop")
+active = false
+
+[node name="AnimatedMenuBackground" parent="." instance=ExtResource("2_ypbsj")]
+texture = ExtResource("4_mstkt")
+
+[node name="Wrapper" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Control" type="Control" parent="Wrapper"]
+custom_minimum_size = Vector2(2.08165e-12, 200)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Wrapper/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("5_ubp6b")
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "
+[center]DON'T RUN OUT OF P[color=transparent]O[/color]WER[/center]"
+scroll_active = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Wrapper/Control"]
+position = Vector2(1496, 92)
+scale = Vector2(0.549238, 0.549238)
+texture = ExtResource("6_y4n8j")
+
+[node name="Buttons" type="VBoxContainer" parent="Wrapper"]
+custom_minimum_size = Vector2(1000, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="Start" type="Button" parent="Wrapper/Buttons"]
+layout_mode = 2
+theme = ExtResource("2_ig451")
+text = "START"
+script = ExtResource("8_sy0ir")
+
+[node name="Settings" type="Button" parent="Wrapper/Buttons"]
+layout_mode = 2
+theme = ExtResource("2_ig451")
+text = "SETTINGS"
+script = ExtResource("8_sy0ir")
+
+[node name="Credits" type="Button" parent="Wrapper/Buttons"]
+layout_mode = 2
+theme = ExtResource("2_ig451")
+text = "CREDITS"
+script = ExtResource("8_sy0ir")
+
+[node name="Exit" type="Button" parent="Wrapper/Buttons"]
+layout_mode = 2
+theme = ExtResource("2_ig451")
+text = "EXIT"
+script = ExtResource("8_sy0ir")
+
+[connection signal="pressed" from="Wrapper/Buttons/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Wrapper/Buttons/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Wrapper/Buttons/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Wrapper/Buttons/Exit" to="." method="_on_exit_pressed"]

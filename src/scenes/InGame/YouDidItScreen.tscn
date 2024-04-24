@@ -1,0 +1,96 @@
+[gd_scene load_steps=5 format=3 uid="uid://x6j0q30am5gu"]
+
+[ext_resource type="Script" path="res://src/scenes/InGame/YouDidItScreen.gd" id="1_73hcf"]
+[ext_resource type="Theme" uid="uid://ccovjkno5qi5t" path="res://src/scenes/instructions/instructions.tres" id="2_3laux"]
+[ext_resource type="Script" path="res://src/objects/Confetti/fake_confetti_particles.gd" id="3_dqqra"]
+[ext_resource type="Script" path="res://src/models/SoundButton.gd" id="4_4v0be"]
+
+[node name="YouDidIt" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_73hcf")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.211765, 0.211765, 0.211765, 1)
+
+[node name="Confetti" type="Node2D" parent="ColorRect"]
+visible = false
+position = Vector2(959, 137)
+script = ExtResource("3_dqqra")
+visibility_rect = Rect2(2.08165e-12, 2.08165e-12, 1024, 600)
+random_position = false
+timer_wait_time = 3.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 74.0
+offset_top = 65.0
+offset_right = -59.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Headline" type="Label" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.87451, 0.443137, 0.14902, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 8
+theme_override_font_sizes/font_size = 80
+text = "YOU FOUND THE EXIT!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="RichTextLabel" parent="ColorRect/VBoxContainer/HBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(1400, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "Time you used the flashlight															{timeUsedFlashlight}
+Your flashlight highscore																{flashlightHighscore}
+
+Remaining power																				{nightVisionPower}
+Remaining power highscore															{remainingPowerHighscore}
+
+Time it took you to find the exit													{timeToFindExit}
+Your exit highscore																			{exitHighscore}"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+shortcut_keys_enabled = false
+meta_underlined = false
+hint_underlined = false
+drag_and_drop_selection_enabled = false
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 48
+
+[node name="Continue" type="Button" parent="ColorRect/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_3laux")
+text = "CONTINUE"
+script = ExtResource("4_4v0be")
+
+[connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/MarginContainer/Continue" to="." method="_on_continue_pressed"]

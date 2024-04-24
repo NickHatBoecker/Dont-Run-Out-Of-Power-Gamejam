@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dra253ld3ccrh"]
+
+[ext_resource type="Script" path="res://src/objects/LevelSelectionButton.gd" id="1_k13hr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ogx65"]
+bg_color = Color(0.129412, 0.129412, 0.129412, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.87451, 0.443137, 0.14902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ef63x"]
+bg_color = Color(0.211765, 0.211765, 0.211765, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.87451, 0.443137, 0.14902, 0)
+
+[sub_resource type="Theme" id="Theme_btvog"]
+Button/font_sizes/font_size = 48
+Button/styles/focus = SubResource("StyleBoxFlat_ogx65")
+Button/styles/hover = SubResource("StyleBoxFlat_ogx65")
+Button/styles/normal = SubResource("StyleBoxFlat_ef63x")
+Button/styles/pressed = SubResource("StyleBoxFlat_ogx65")
+
+[node name="LevelSelectionButton" type="Button"]
+custom_minimum_size = Vector2(150, 150)
+theme = SubResource("Theme_btvog")
+text = "TEST"
+script = ExtResource("1_k13hr")

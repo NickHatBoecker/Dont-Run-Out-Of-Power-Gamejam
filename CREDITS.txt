@@ -1,0 +1,11 @@
+Keyboard icons by Jhonny Cortabraz
+https://oworowo.itch.io/keyboard-keys-asset-pack
+
+Gamepad icons by Kenney
+https://www.kenney.nl/assets/input-prompts-pixel-16
+
+Input Helper addon by Nathan Hoad
+https://github.com/nathanhoad/godot_input_helper
+
+Scene Manager addon by GlassBrick
+https://github.com/glass-brick/Scene-Manager

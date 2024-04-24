@@ -1,0 +1,47 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://c2ghuirgamdal"]
+
+[ext_resource type="Texture2D" uid="uid://bqybmll3mhv81" path="res://src/scenes/menus/Settings/slider-grabber.png" id="1_2c6i7"]
+[ext_resource type="Texture2D" uid="uid://c2uxcvu6gwtyj" path="res://src/scenes/menus/Settings/slider-tick.png" id="1_ppmy6"]
+[ext_resource type="Texture2D" uid="uid://dx63dr5jhanyc" path="res://src/scenes/menus/Settings/slider-grabber-highlight.png" id="2_pgicw"]
+[ext_resource type="FontFile" uid="uid://bbarq1kl5hjt8" path="res://src/assets/fonts/PressStart2P.ttf" id="4_5o2r5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpy0x"]
+expand_margin_top = 9.0
+expand_margin_bottom = 9.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h5rc0"]
+bg_color = Color(0.87451, 0.443137, 0.14902, 1)
+expand_margin_top = 9.0
+expand_margin_bottom = 9.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bnkd3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kns7o"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.87451, 0.443137, 0.14902, 1)
+expand_margin_left = 12.0
+expand_margin_top = 12.0
+expand_margin_right = 12.0
+expand_margin_bottom = 12.0
+
+[resource]
+HSlider/icons/grabber = ExtResource("1_2c6i7")
+HSlider/icons/grabber_disabled = ExtResource("1_2c6i7")
+HSlider/icons/grabber_highlight = ExtResource("2_pgicw")
+HSlider/icons/tick = ExtResource("1_ppmy6")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_cpy0x")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_h5rc0")
+HSlider/styles/slider = SubResource("StyleBoxFlat_bnkd3")
+Label/fonts/font = ExtResource("4_5o2r5")
+OptionButton/font_sizes/font_size = 24
+OptionButton/fonts/font = ExtResource("4_5o2r5")
+OptionButton/styles/focus = SubResource("StyleBoxFlat_kns7o")
+PopupMenu/constants/h_separation = 24
+PopupMenu/constants/v_separation = 24
+PopupMenu/font_sizes/font_size = 24
+PopupMenu/fonts/font = ExtResource("4_5o2r5")

@@ -1,0 +1,174 @@
+[gd_scene load_steps=31 format=3 uid="uid://ufd0ugk7jbti"]
+
+[ext_resource type="Script" path="res://src/objects/Player/Player.gd" id="1_0uaxh"]
+[ext_resource type="Texture2D" uid="uid://jknjlgkub78d" path="res://src/objects/Player/player.png" id="1_64gur"]
+[ext_resource type="AnimationLibrary" uid="uid://c18g2ccoddsq0" path="res://src/objects/Player/PlayerAnimations.res" id="3_tbe5l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6eu2n"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqfoe"]
+size = Vector2(14, 8)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7xp3f"]
+animation = &"fall"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sm5is"]
+animation = &"idle_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f2q15"]
+animation = &"idle_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c5270"]
+animation = &"idle_down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aaog8"]
+animation = &"idle_up"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="15"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_sm5is")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_f2q15")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_c5270")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_aaog8")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6aw8u"]
+animation = &"monster_hit_down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lp5b0"]
+animation = &"monster_hit_up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c2ejb"]
+animation = &"monster_hit_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hyt50"]
+animation = &"monster_hit_right"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ayo3j"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_6aw8u")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_lp5b0")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_c2ejb")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_hyt50")
+blend_point_3/pos = Vector2(1, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6qouq"]
+animation = &"walk_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_21a2p"]
+animation = &"walk_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_34fmg"]
+animation = &"walk_down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k4ov0"]
+animation = &"walk_up"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="20"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_6qouq")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_21a2p")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_34fmg")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_k4ov0")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="21"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="22"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p4bq3"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0muau"]
+advance_mode = 2
+advance_condition = &"is_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7c23n"]
+advance_mode = 2
+advance_condition = &"is_falling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3aerm"]
+advance_mode = 2
+advance_condition = &"is_falling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_husin"]
+advance_mode = 2
+advance_condition = &"is_monster_hit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t0d1y"]
+advance_mode = 2
+advance_condition = &"is_idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_xnc0o"]
+states/Fall/node = SubResource("AnimationNodeAnimation_7xp3f")
+states/Fall/position = Vector2(466.76, 209.5)
+states/Idle/node = SubResource("15")
+states/Idle/position = Vector2(374.5, 106.25)
+states/MonsterHit/node = SubResource("AnimationNodeBlendSpace2D_ayo3j")
+states/MonsterHit/position = Vector2(439.811, 19)
+states/Walk/node = SubResource("20")
+states/Walk/position = Vector2(566.5, 107)
+transitions = ["Idle", "Walk", SubResource("21"), "Walk", "Idle", SubResource("22"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_p4bq3"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_0muau"), "Walk", "Fall", SubResource("AnimationNodeStateMachineTransition_7c23n"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_3aerm"), "Idle", "MonsterHit", SubResource("AnimationNodeStateMachineTransition_husin"), "MonsterHit", "Idle", SubResource("AnimationNodeStateMachineTransition_t0d1y")]
+graph_offset = Vector2(-70.1888, 8)
+
+[node name="Player" type="CharacterBody2D"]
+process_mode = 3
+script = ExtResource("1_0uaxh")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(16, 8)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("1_64gur")
+hframes = 3
+vframes = 4
+frame = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_6eu2n")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(16, 16)
+target_position = Vector2(0, 8)
+
+[node name="InteractionArea" type="Area2D" parent="."]
+position = Vector2(16, 32)
+
+[node name="InteractionShape" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_vqfoe")
+
+[node name="PlayerAnimations" type="Node" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerAnimations"]
+root_node = NodePath("../..")
+libraries = {
+"": ExtResource("3_tbe5l")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="PlayerAnimations"]
+root_node = NodePath("../..")
+libraries = {
+"": ExtResource("3_tbe5l")
+}
+tree_root = SubResource("AnimationNodeStateMachine_xnc0o")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/is_falling = false
+parameters/conditions/is_idle = false
+parameters/conditions/is_monster_hit = false
+parameters/Idle/blend_position = Vector2(0.00192118, -0.00438595)
+parameters/MonsterHit/blend_position = Vector2(-0.0480307, -0.0833334)
+parameters/Walk/blend_position = Vector2(-0.0138249, -0.476702)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../../PlayerCamera")

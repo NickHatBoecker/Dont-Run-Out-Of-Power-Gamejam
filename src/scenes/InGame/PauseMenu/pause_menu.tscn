@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://cocj6e0bva14c"]
+
+[ext_resource type="Script" path="res://src/scenes/InGame/PauseMenu/pause_menu.gd" id="1_r8q6r"]
+[ext_resource type="Theme" uid="uid://bfxi6ddh87l1r" path="res://src/scenes/menus/SaveMenu/SaveMenuButton.tres" id="2_ig451"]
+[ext_resource type="Script" path="res://src/models/SoundButton.gd" id="3_ewwx6"]
+[ext_resource type="PackedScene" uid="uid://7arusq1aympr" path="res://src/scenes/menus/Settings/settings.tscn" id="4_5iu10"]
+
+[node name="PauseMenu" type="PanelContainer"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_r8q6r")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0, 0, 0, 0.513726)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(1000, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="Continue" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ig451")
+theme_override_font_sizes/font_size = 36
+text = "CONTINUE"
+script = ExtResource("3_ewwx6")
+
+[node name="Restart Level" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ig451")
+theme_override_font_sizes/font_size = 36
+text = "RESTART LEVEL"
+script = ExtResource("3_ewwx6")
+
+[node name="Settings" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ig451")
+theme_override_font_sizes/font_size = 36
+text = "SETTINGS"
+script = ExtResource("3_ewwx6")
+
+[node name="BackToStart" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ig451")
+theme_override_font_sizes/font_size = 36
+text = "BACK TO START"
+script = ExtResource("3_ewwx6")
+
+[node name="Menus" type="Node2D" parent="."]
+
+[node name="Settings" parent="Menus" instance=ExtResource("4_5iu10")]
+visible = false
+
+[connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="pressed" from="VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="VBoxContainer/Restart Level" to="." method="_on_restart_level_pressed"]
+[connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/BackToStart" to="." method="_on_back_to_start_pressed"]
+[connection signal="hidden" from="Menus/Settings" to="." method="_on_settings_hidden"]

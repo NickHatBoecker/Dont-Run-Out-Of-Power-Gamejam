@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://csiumhlhndi8h"]
+
+[ext_resource type="Shader" uid="uid://tu4nnxnhwrhq" path="res://src/shaders/greenscale.tres" id="1_7xaho"]
+
+[resource]
+shader = ExtResource("1_7xaho")
+shader_parameter/background_color = Color(0, 0, 0, 0.572549)
+shader_parameter/foreground_color = Color(0, 1, 0, 1)
+shader_parameter/grid_size = 60.0
+shader_parameter/dot_size = 0.2

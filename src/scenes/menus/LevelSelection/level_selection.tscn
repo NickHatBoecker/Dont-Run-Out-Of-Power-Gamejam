@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://ilwk7ilbfw6s"]
+
+[ext_resource type="Script" path="res://src/scenes/menus/LevelSelection/level_selection.gd" id="1_5by35"]
+[ext_resource type="PackedScene" uid="uid://dra253ld3ccrh" path="res://src/objects/LevelSelectionButton.tscn" id="2_4nptr"]
+[ext_resource type="Texture2D" uid="uid://c8nmvhvo7x0me" path="res://src/assets/images/battery-animated-background.png" id="3_6at7k"]
+[ext_resource type="PackedScene" uid="uid://d2u26almqf5vo" path="res://src/objects/AnimatedBackground/AnimatedMenuBackground.tscn" id="3_bcu63"]
+[ext_resource type="PackedScene" uid="uid://ssooyvxi3hig" path="res://src/objects/InputIcon/InputButton.tscn" id="4_uh5vx"]
+
+[node name="LevelSelection" type="PanelContainer"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_5by35")
+
+[node name="AnimatedMenuBackground" parent="." instance=ExtResource("3_bcu63")]
+texture = ExtResource("3_6at7k")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(1000, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 24
+columns = 3
+
+[node name="TestLevel" parent="VBoxContainer/GridContainer" instance=ExtResource("2_4nptr")]
+layout_mode = 2
+
+[node name="Button2" parent="VBoxContainer/GridContainer" instance=ExtResource("2_4nptr")]
+layout_mode = 2
+text = "1"
+
+[node name="Button3" parent="VBoxContainer/GridContainer" instance=ExtResource("2_4nptr")]
+layout_mode = 2
+disabled = true
+text = "2"
+
+[node name="Button4" parent="VBoxContainer/GridContainer" instance=ExtResource("2_4nptr")]
+layout_mode = 2
+disabled = true
+text = "3"
+
+[node name="HintLabel" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[center]This gamejam prototype only has {numLevels} levels for now.
+If you like the gameplay, please leave a comment on itch.io and follow me on Twitter [color=#e28343]@nickhatboecker[/color].[/center]"
+fit_content = true
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" parent="VBoxContainer/MarginContainer" instance=ExtResource("4_uh5vx")]
+layout_mode = 2
+
+[connection signal="pressed" from="VBoxContainer/MarginContainer/BackButton" to="." method="_on_back_pressed"]

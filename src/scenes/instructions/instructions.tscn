@@ -1,0 +1,243 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvvg4mpkynrt6"]
+
+[ext_resource type="Script" path="res://src/scenes/instructions/instructions.gd" id="1_qtkxi"]
+[ext_resource type="Theme" uid="uid://ccovjkno5qi5t" path="res://src/scenes/instructions/instructions.tres" id="2_i61fo"]
+[ext_resource type="Script" path="res://src/models/SoundButton.gd" id="3_631qj"]
+
+[node name="Instructions" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qtkxi")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.133333, 0.133333, 0.133333, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pages" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 980)
+layout_mode = 2
+
+[node name="Page1" type="Control" parent="VBoxContainer/Pages"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Pages/Page1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 69.0
+offset_top = 38.0
+offset_right = -69.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 48
+
+[node name="Headline" type="Label" parent="VBoxContainer/Pages/Page1/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.87451, 0.443137, 0.14902, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 8
+theme_override_font_sizes/font_size = 80
+text = "ABOUT THIS GAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/Pages/Page1/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "You wake up in a dark room. You can't remember how you got there. But fear pushes you forward. In the distance, you see a green light. The exit? Make your way through the dark obstacle course, but beware of the dangers lurking within.
+
+Use night vision view to illuminate the path for a short time. However, once the battery is empty, you won't be able to use it anymore. So make sure you don't run out of power.
+
+
+DISCLAIMER:
+This game was created as part of the Gamedev.js Jam 2024. Theme was POWER. It is a prototype that could contain some bugs. Nevertheless, I hope you enjoy playing it."
+autowrap_mode = 2
+
+[node name="Page2" type="Control" parent="VBoxContainer/Pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Pages/Page2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 69.0
+offset_top = 38.0
+offset_right = -69.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 48
+
+[node name="ControlsHeadline" type="Label" parent="VBoxContainer/Pages/Page2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.87451, 0.443137, 0.14902, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 8
+theme_override_font_sizes/font_size = 80
+text = "CONTROLS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ControlsLabel" type="RichTextLabel" parent="VBoxContainer/Pages/Page2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "- Walk with [color=#e28343]arrow buttons[/color] or gamepad [color=#e28343]joystick[/color].
+- Toggle your night vision with [color=#e28343]X[/color] on keyboard or Xbox gamepad.
+- Press [color=#e28343]P[/color] on keyboard or [color=#e28343]START[/color] on gamepad to open pause menu"
+fit_content = true
+autowrap_mode = 2
+meta_underlined = false
+hint_underlined = false
+drag_and_drop_selection_enabled = false
+
+[node name="Headline2" type="Label" parent="VBoxContainer/Pages/Page2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.87451, 0.443137, 0.14902, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 8
+theme_override_font_sizes/font_size = 80
+text = "BEWARE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="RichTextLabel" parent="VBoxContainer/Pages/Page2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/line_separation = 15
+theme_override_font_sizes/normal_font_size = 36
+theme_override_font_sizes/italics_font_size = 32
+bbcode_enabled = true
+text = "1. Once activated, [color=#e28343]night vision[/color] will loose its power.
+    [i]Use it sparley, otherwise you won't be able to see the things in front of you.[/i]
+2. Mind the gap! Your position will be reset if you [color=#e28343]step over the edge[/color].
+3. Watch out for [color=#e28343]obstacles[/color] and anything [color=#e28343]out of the ordinary[/color].
+4. Ran out of power? [color=#e28343]Restart the level[/color] in the pause menu."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+meta_underlined = false
+hint_underlined = false
+drag_and_drop_selection_enabled = false
+
+[node name="Page3" type="Control" parent="VBoxContainer/Pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Pages/Page3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 69.0
+offset_top = 38.0
+offset_right = -69.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 48
+
+[node name="Headline" type="Label" parent="VBoxContainer/Pages/Page3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.87451, 0.443137, 0.14902, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 8
+theme_override_font_sizes/font_size = 80
+text = "BEAT YOUR OWN HIGHSCORE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/Pages/Page3/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "The faster you solve the obstacle course and the fuller your battery is, the better. Reenter the labyrinth and try to beat your own timestamps."
+autowrap_mode = 2
+
+[node name="Headline2" type="Label" parent="VBoxContainer/Pages/Page3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.87451, 0.443137, 0.14902, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 8
+theme_override_font_sizes/font_size = 80
+text = "
+COMPETE WITH OTHERS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="RichTextLabel" parent="VBoxContainer/Pages/Page3/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "ATTENTION:
+Unfortunately, statistics about other players are not part of the game jam version. If you would like to see a highscore board, comment on itch.io or Twitter [color=#e28343]@nickhatboecker[/color]."
+fit_content = true
+autowrap_mode = 2
+
+[node name="Navigation" type="VBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 120)
+layout_mode = 2
+
+[node name="Wrapper" type="HBoxContainer" parent="VBoxContainer/Navigation"]
+layout_mode = 2
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="Back" type="Button" parent="VBoxContainer/Navigation/Wrapper"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme = ExtResource("2_i61fo")
+text = "< BACK"
+script = ExtResource("3_631qj")
+
+[node name="Close" type="Button" parent="VBoxContainer/Navigation/Wrapper"]
+layout_mode = 2
+theme = ExtResource("2_i61fo")
+text = "CLOSE"
+script = ExtResource("3_631qj")
+
+[node name="Next" type="Button" parent="VBoxContainer/Navigation/Wrapper"]
+layout_mode = 2
+theme = ExtResource("2_i61fo")
+text = "NEXT >"
+script = ExtResource("3_631qj")
+
+[connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="pressed" from="VBoxContainer/Navigation/Wrapper/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="VBoxContainer/Navigation/Wrapper/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="VBoxContainer/Navigation/Wrapper/Next" to="." method="_on_next_pressed"]

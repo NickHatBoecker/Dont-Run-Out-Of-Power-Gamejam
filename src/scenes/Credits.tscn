@@ -1,0 +1,117 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwe2g7qikkuak"]
+
+[ext_resource type="PackedScene" uid="uid://d2u26almqf5vo" path="res://src/objects/AnimatedBackground/AnimatedMenuBackground.tscn" id="1_61lgw"]
+[ext_resource type="Script" path="res://src/scenes/Credits.gd" id="1_l20j2"]
+[ext_resource type="Texture2D" uid="uid://c8nmvhvo7x0me" path="res://src/assets/images/battery-animated-background.png" id="2_rrdhn"]
+[ext_resource type="Texture2D" uid="uid://deqyc0et2gnuc" path="res://src/assets/images/godot_logo.png" id="4_c4hb5"]
+[ext_resource type="PackedScene" uid="uid://ssooyvxi3hig" path="res://src/objects/InputIcon/InputButton.tscn" id="4_p6gdj"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l20j2")
+
+[node name="AnimatedMenuBackground" parent="." instance=ExtResource("1_61lgw")]
+texture = ExtResource("2_rrdhn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 288.0
+offset_top = 87.0
+offset_right = -271.0
+offset_bottom = -166.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[color=#e28343]Idea / Programming:[/color]
+NickHatBoecker
+https://nick-hat-boecker.de/linktree
+
+[color=#e28343]Graphics:[/color]
+Modern Interiors by limezu
+https://limezu.itch.io/
+
+Pixelart Controller Asset Pack by Jhonny Cortabraz
+https://oworowo.itch.io/pixelart-gamepad-ui-pack
+
+Multiple assets of
+OmegaModernGraphicsPack by finalboss
+https://finalbossblues.itch.io/omega-modern-graphics-pack
+
+Button assets of Kenney Game Assets All-in-1
+https://kenney.itch.io/kenney-game-assets
+
+[color=#e28343]Audio:[/color]
+Monster sound effect by 666HeroHero from Pixabay
+https://pixabay.com/de/users/666herohero-25759907"
+fit_content = true
+scroll_active = false
+meta_underlined = false
+hint_underlined = false
+selection_enabled = true
+drag_and_drop_selection_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/separation = 48
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Exit sound effect by floraphonic from Pixabay
+https://pixabay.com/de/users/floraphonic-38928062
+
+Other sound effects & music from Pixabay
+
+[color=#e28343]Testing:[/color]
+KiraCaelum
+
+[color=#e28343]Powered by:[/color]
+Godot
+https://godotengine.org/"
+fit_content = true
+scroll_active = false
+meta_underlined = false
+hint_underlined = false
+selection_enabled = true
+drag_and_drop_selection_enabled = false
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 250)
+layout_mode = 2
+texture = ExtResource("4_c4hb5")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -148.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="InputButton" parent="MarginContainer" instance=ExtResource("4_p6gdj")]
+layout_mode = 2

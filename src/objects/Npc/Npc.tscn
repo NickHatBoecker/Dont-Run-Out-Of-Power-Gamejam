@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://ca4eihpayy63b"]
+
+[ext_resource type="Texture2D" uid="uid://d1gjyebu7kdve" path="res://src/assets/tilesets/OmegaModernGraphicsPack/chara/character6.png" id="1_fdmhc"]
+[ext_resource type="Script" path="res://src/objects/NPC.gd" id="2_oli4q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8tgx3"]
+size = Vector2(16, 16)
+
+[node name="NPC" type="CharacterBody2D" groups=["NPC"]]
+position = Vector2(16, 8)
+script = ExtResource("2_oli4q")
+characterName = "Sarah"
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_fdmhc")
+hframes = 12
+vframes = 12
+frame = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_8tgx3")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_8tgx3")
+debug_color = Color(0.972549, 0, 0, 0.419608)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_exited"]

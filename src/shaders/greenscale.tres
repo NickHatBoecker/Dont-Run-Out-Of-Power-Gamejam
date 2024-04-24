@@ -1,0 +1,29 @@
+[gd_resource type="Shader" format=3 uid="uid://tu4nnxnhwrhq"]
+
+[resource]
+code = "shader_type canvas_item;
+
+uniform vec4 background_color: source_color = vec4(0.0, 0.0, 0.0, 1.0);
+uniform vec4 foreground_color: source_color = vec4(0.0, 1.0, 0.0, 1.0); // Grüne Farbe für die Punkte
+uniform float grid_size: hint_range(0.0, 200, 0.1) = 50;
+uniform float dot_size: hint_range(0.0, 1.0, 0.01) = 0.1;
+
+uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
+
+void fragment() {
+    // Erster Shader, um das Bild grün zu machen
+    vec4 green_color = texture(SCREEN_TEXTURE, SCREEN_UV);
+    float avg = (green_color.r + green_color.g + green_color.b) / 3.5;
+    green_color.rgb = vec3(0.0, avg, 0.1); // Setzt den Grünanteil auf den Durchschnittswert, während Rot und Blau auf Null gesetzt werden.
+
+    // Zweiter Shader, um grüne Punkte über das Bild zu legen
+    vec2 tile_coord = mod(FRAGCOORD.xy * SCREEN_PIXEL_SIZE.x, vec2(1.0 / grid_size));
+    vec2 uv =  tile_coord * grid_size - vec2(0.5);
+    float len = clamp(length(uv) / dot_size, 0.0, 1.0);
+    vec4 dot_color = mix(foreground_color, background_color, len);
+
+    // Kombiniere die Farben des ersten und zweiten Shaders
+    vec4 combined_color = mix(green_color, dot_color, step(len, 0.5)); // Stelle sicher, dass die Farben sowohl grün als auch die Punkte behalten
+    COLOR = combined_color;
+}
+"

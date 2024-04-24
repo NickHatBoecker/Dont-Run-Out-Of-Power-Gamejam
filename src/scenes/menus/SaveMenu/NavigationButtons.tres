@@ -1,0 +1,20 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://derqvq6wrmt4u"]
+
+[ext_resource type="FontFile" uid="uid://bbarq1kl5hjt8" path="res://src/assets/fonts/PressStart2P.ttf" id="1_66rb8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pnlto"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_72nit"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gmq3u"]
+content_margin_left = 24.0
+content_margin_right = 24.0
+
+[resource]
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_66rb8")
+Button/styles/focus = SubResource("StyleBoxEmpty_pnlto")
+Button/styles/hover = SubResource("StyleBoxEmpty_72nit")
+Button/styles/normal = SubResource("StyleBoxEmpty_gmq3u")
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_66rb8")
